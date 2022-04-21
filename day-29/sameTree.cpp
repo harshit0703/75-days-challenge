@@ -12,19 +12,16 @@
 class Solution
 {
 public:
-    TreeNode *invertTree(TreeNode *root)
+    bool isSameTree(TreeNode *p, TreeNode *q)
     {
-
-        if (root == NULL)
-            return NULL;
-
-        root->left = invertTree(root->left);
-        root->right = invertTree(root->right);
-
-        TreeNode *temp = root->left;
-        root->left = root->right;
-        root->right = temp;
-
-        return root;
+        if (p == NULL || q == NULL)
+        {
+            return (p == q);
+        }
+        if (isSameTree(p->left, q->left) && isSameTree(p->right, q->right))
+        {
+            return (p->val == q->val);
+        }
+        return false;
     }
 };
